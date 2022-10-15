@@ -1,7 +1,7 @@
-package org.sparksandbox.globals
+package org.module.init
 
 import org.apache.spark.sql.SparkSession
-import org.sparksandbox.etl._
+import org.module.etl._
 
 object Router {
 

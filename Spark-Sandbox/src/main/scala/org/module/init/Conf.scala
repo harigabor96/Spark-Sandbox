@@ -1,4 +1,4 @@
-package org.sparksandbox.globals
+package org.module.init
 
 import org.rogach.scallop.ScallopConf
 

@@ -1,11 +1,11 @@
-package org.sparksandbox.etl
+package org.module.etl
 
 import io.delta.tables.DeltaTable
 import org.apache.spark.sql.functions._
 import org.apache.spark.sql.streaming.Trigger
 import org.apache.spark.sql.types._
 import org.apache.spark.sql.{DataFrame, SparkSession}
-import org.sparksandbox.globals.GenericPipeline
+import org.module.etl.utils.GenericPipeline
 
 case class SandboxPipeline(spark: SparkSession, rawZonePath: String, curatedZonePath: String) extends GenericPipeline {
 

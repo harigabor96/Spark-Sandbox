@@ -1,4 +1,4 @@
-package org.sparksandbox.etl.utils
+package org.module.etl.utils
 
  object SandboxUtil {
 

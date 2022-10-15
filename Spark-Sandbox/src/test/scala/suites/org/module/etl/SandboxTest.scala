@@ -1,7 +1,7 @@
-package suites.org.sparksandbox.etl
+package suites.org.module.etl
 
 import org.scalatest.funsuite.AnyFunSuite
-import testutils.SharedSparkSession
+import utils.SharedSparkSession
 
 class SandboxTest extends AnyFunSuite with SharedSparkSession {
 

@@ -1,7 +1,7 @@
-package org.sparksandbox
+package org.module
 
 import org.apache.spark.sql.SparkSession
-import org.sparksandbox.globals.{Conf, Router}
+import org.module.init.{Conf, Router}
 
 object App {
 

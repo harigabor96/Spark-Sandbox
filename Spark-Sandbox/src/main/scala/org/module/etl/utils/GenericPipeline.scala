@@ -1,4 +1,4 @@
-package org.sparksandbox.globals
+package org.module.etl.utils
 
 import org.apache.spark.sql.DataFrame
 
