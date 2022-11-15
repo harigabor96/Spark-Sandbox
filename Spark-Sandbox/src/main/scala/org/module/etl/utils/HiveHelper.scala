@@ -4,7 +4,7 @@ import org.apache.spark.sql.SparkSession
 
 object HiveHelper {
 
-  def setupMetastore(spark: SparkSession, curatedZonePath: String, databaseName: String, tableName: String): Unit = {
+  def setupMetastore(spark: SparkSession, databaseName: String, tableName: String): Unit = {
     spark.sql(
       s"""
           CREATE DATABASE IF NOT EXISTS $databaseName;
@@ -13,7 +13,7 @@ object HiveHelper {
       s"""
           CREATE TABLE IF NOT EXISTS $databaseName.$tableName
           USING DELTA
-          LOCATION '../$curatedZonePath/$databaseName.db/$tableName/data';
+          LOCATION '${spark.conf.get("spark.sql.warehouse.dir")}/$databaseName.db/$tableName/data';
       """)
   }
 
