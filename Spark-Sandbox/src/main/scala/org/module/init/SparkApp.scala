@@ -3,9 +3,9 @@ package org.module.init
 import org.apache.spark.sql.SparkSession
 import org.module.etl.zones._
 
-object Router {
+object SparkApp {
 
-  def executePipeline(spark: SparkSession, conf: Conf): Unit = conf.pipeline() match {
+  def run(spark: SparkSession, conf: Conf): Unit = conf.pipeline() match {
     case "sandbox-pipeline" =>
       bronzesilvergold.tables.sandbox_table
         .Pipeline(spark).execute()
