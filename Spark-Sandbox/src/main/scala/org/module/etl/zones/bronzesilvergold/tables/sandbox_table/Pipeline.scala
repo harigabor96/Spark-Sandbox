@@ -8,16 +8,15 @@ import org.module.etl.utils.GenericPipeline
 case class Pipeline(spark: SparkSession, rawZonePath: String, curatedZonePath: String) extends GenericPipeline {
 
   val inputPath = s"$rawZonePath/{*}"
+  val inputSchema =
+    new StructType(Array(
+      StructField("sandbox_field", StringType, true)
+    ))
 
   val outputDatabaseName = "sandboxdb"
   val outputTableName = "sandboxtable"
   val outputDataRelativePath = s"$outputDatabaseName.db/$outputTableName/data"
   val outputCheckpointRelativePath = s"$outputDatabaseName.db/$outputTableName/checkpoint"
-
-  val inputSchema =
-    new StructType(Array(
-      StructField("sandbox_field", StringType, true)
-    ))
 
   override def execute(): Unit = {
     load(transform(extract()))
