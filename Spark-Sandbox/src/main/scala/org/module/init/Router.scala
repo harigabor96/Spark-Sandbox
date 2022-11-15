@@ -8,7 +8,7 @@ object Router {
   def executePipeline(spark: SparkSession, conf: Conf): Unit = conf.pipeline() match {
     case "sandbox-pipeline" =>
       bronzesilvergold.tables.sandbox_table
-        .Pipeline(spark, conf.rawZonePath()).execute()
+        .Pipeline(spark).execute()
     case "sandbox-query" =>
       platinum.queries.sandbox_query
         .Query(spark).execute().show(false)

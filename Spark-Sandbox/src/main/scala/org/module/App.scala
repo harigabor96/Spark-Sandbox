@@ -17,6 +17,7 @@ object App {
       .builder()
       .appName("Spark-Sandbox")
       .config("spark.sql.warehouse.dir", conf.curatedZonePath())
+      .config("spark.custom.raw.dir", conf.rawZonePath())
       .master("local")
       .getOrCreate()
 

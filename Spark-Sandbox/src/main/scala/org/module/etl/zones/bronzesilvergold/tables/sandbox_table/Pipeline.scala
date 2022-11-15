@@ -5,8 +5,9 @@ import org.apache.spark.sql.types._
 import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.module.etl.utils.GenericPipeline
 
-case class Pipeline(spark: SparkSession, rawZonePath: String) extends GenericPipeline {
+case class Pipeline(spark: SparkSession) extends GenericPipeline {
 
+  val rawZonePath = spark.conf.get("spark.custom.raw.dir")
   val curatedZonePath = spark.conf.get("spark.sql.warehouse.dir")
 
   val inputPath = s"$rawZonePath/{*}"
