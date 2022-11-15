@@ -15,6 +15,7 @@ trait SharedSparkSession extends BeforeAndAfterAll { self: Suite =>
         .builder()
         .appName("Test")
         .master("local")
+        .config("spark.sql.warehouse.dir", "../storage/curated/")
         .getOrCreate()
 
     spark.sparkContext.setLogLevel("ERROR")

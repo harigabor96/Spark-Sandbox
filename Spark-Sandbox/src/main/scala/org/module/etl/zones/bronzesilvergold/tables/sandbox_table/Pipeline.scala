@@ -1,13 +1,11 @@
-package org.module.etl
+package org.module.etl.zones.bronzesilvergold.tables.sandbox_table
 
-import io.delta.tables.DeltaTable
-import org.apache.spark.sql.functions._
 import org.apache.spark.sql.streaming.Trigger
 import org.apache.spark.sql.types._
 import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.module.etl.utils.GenericPipeline
 
-case class SandboxPipeline(spark: SparkSession, rawZonePath: String, curatedZonePath: String) extends GenericPipeline {
+case class Pipeline(spark: SparkSession, rawZonePath: String, curatedZonePath: String) extends GenericPipeline {
 
   val inputPath = s"$rawZonePath/{*}"
 
@@ -39,17 +37,6 @@ case class SandboxPipeline(spark: SparkSession, rawZonePath: String, curatedZone
   }
 
   override protected def load(transformedDf: DataFrame): Unit = {
-
-    transformedDf
-      .writeStream
-      .trigger(Trigger.AvailableNow())
-      .outputMode("append")
-      .format("console")
-      .option("truncate", false)
-      .start()
-      .awaitTermination()
-
-    /*
     spark.sql(s"CREATE DATABASE IF NOT EXISTS $outputDatabaseName")
 
     transformedDf
@@ -61,7 +48,6 @@ case class SandboxPipeline(spark: SparkSession, rawZonePath: String, curatedZone
       .option("checkpointLocation", s"$curatedZonePath/$outputCheckpointRelativePath")
       .toTable(s"$outputDatabaseName.$outputTableName")
       .awaitTermination()
-    */
   }
 
 }
