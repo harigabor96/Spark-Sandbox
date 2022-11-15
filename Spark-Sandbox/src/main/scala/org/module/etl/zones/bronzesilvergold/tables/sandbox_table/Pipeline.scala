@@ -4,13 +4,11 @@ import org.apache.spark.sql.streaming.Trigger
 import org.apache.spark.sql.types._
 import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.module.etl.utils.GenericPipeline
+import org.module.init.Conf
 
-case class Pipeline(spark: SparkSession) extends GenericPipeline {
+case class Pipeline(spark: SparkSession, conf: Conf) extends GenericPipeline {
 
-  val rawZonePath = spark.conf.get("spark.custom.raw.dir")
-  val curatedZonePath = spark.conf.get("spark.sql.warehouse.dir")
-
-  val inputPath = s"$rawZonePath/{*}"
+  val inputPath = s"${conf.rawZonePath()}/{*}"
   val inputSchema =
     new StructType(Array(
       StructField("sandbox_field", StringType, true)
@@ -47,7 +45,7 @@ case class Pipeline(spark: SparkSession) extends GenericPipeline {
       .outputMode("append")
       .format("delta")
       .option("path", s"$outputDataRelativePath")
-      .option("checkpointLocation", s"$curatedZonePath/$outputCheckpointRelativePath")
+      .option("checkpointLocation", s"${conf.curatedZonePath()}/$outputCheckpointRelativePath")
       .toTable(s"$outputDatabaseName.$outputTableName")
       .awaitTermination()
   }
