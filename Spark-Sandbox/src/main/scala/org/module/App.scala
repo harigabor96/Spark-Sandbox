@@ -6,6 +6,8 @@ import org.module.init.{Conf, SparkApp}
 object App {
 
   def main(args: Array[String]): Unit = {
+    //val conf = new Conf(args)
+
     val conf = new Conf(Array(
       "-r", "../storage/raw/",
       "-c", "../storage/curated/",
