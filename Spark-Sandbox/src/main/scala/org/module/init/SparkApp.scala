@@ -10,7 +10,7 @@ object SparkApp {
       bronzesilvergold.tables.sandbox_table
         .Pipeline(spark, conf).execute()
     case "sandbox-query" =>
-      platinum.queries.sandbox_query
+      diamond.queries.sandbox_query
         .Query(spark, conf).execute().show(false)
     case _ =>
       throw new Exception("Pipeline is not registered in the router!")

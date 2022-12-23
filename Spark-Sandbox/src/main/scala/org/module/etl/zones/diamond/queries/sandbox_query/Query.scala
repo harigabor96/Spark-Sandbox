@@ -1,4 +1,4 @@
-package org.module.etl.zones.platinum.queries.sandbox_query
+package org.module.etl.zones.diamond.queries.sandbox_query
 
 import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.module.etl.utils.HiveHelper
